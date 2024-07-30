@@ -17,7 +17,6 @@ const App = () => {
             <Timeline/>
             {/* where the dynamic/switch comment section will be */}
             <Comments></Comments>
-            <Comments></Comments>
         </div>
     );
 }
