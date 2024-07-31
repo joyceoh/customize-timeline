@@ -3,8 +3,9 @@ import React from 'react';
 
 // import the timeline and dynamic info/comment section
 import NavBar from './navigation/navBar.jsx';
-import Timeline from './components/timeline.jsx';
+import Arcus from './components/arcus.jsx';
 import Comments from './components/comments.jsx';
+import ArcusEdit from './components/arcusEdit.jsx'
 
 //import style sheet
 
@@ -14,9 +15,11 @@ const App = () => {
             {/* nav bar */}
             <NavBar></NavBar>
             {/* where the timline will be */}
-            <Timeline/>
+            <Arcus/>
             {/* where the dynamic/switch comment section will be */}
             <Comments></Comments>
+            {/* another switch to timeline edit */}
+            <ArcusEdit></ArcusEdit>
         </div>
     );
 }

@@ -8,8 +8,8 @@ export default function navBar() {
       <nav className='navContainer'>
         <ul>
             <li><a href='/'>Home</a></li>
-            <h1>my timeline</h1>
-            <li><a href='/myTimeline'>Edit Timeline</a></li>
+            <h1>Arcus</h1>
+            <li><a href='/myTimeline'>Edit Arcus</a></li>
             {/* should be dynamic where if you don't have a login */}
             <li><a href='/profile'>My Profile</a></li>
         </ul>
