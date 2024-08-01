@@ -4,7 +4,7 @@ const path = require('path');
 
 
 //require for the different controllers
-const comments = require('../controllers/commentController.js');
+const Comments = require('../controllers/commentController.js');
 const Arcus = require('../controllers/arcusController.js');
 
 // console.log('dirname: ', __dirname)
@@ -27,7 +27,8 @@ router.post('/editArcus',
 );
 
 router.get('/comments',
-    (req, res) => res.status(200).json()
+    Comments.getComments,
+    (req, res) => res.status(200).json(res.locals.commentsData)
 );
 
 router.post('/comments',

@@ -19,11 +19,13 @@ const initalData = {
       borderColor: "blue"
     }
   ],
+  maintainAspectRatio: false,
   options: {
     scales: {
     x: {
       type: 'time',
       time: { unit: 'day'},
+      grid: { display: false},
       display: true,
       title: {
         display: true,
@@ -38,13 +40,13 @@ const initalData = {
         // color: function(context) {
           //   return context.tick && context.tick.major ? '#FF0000' : 'rgba(0,0,0,0.1)';
           // },
-          font: function(context) {
-            if (context.tick && context.tick.major) {
-              return {
-                weight: 'bold',
-              };
-            }
-          }
+          // font: function(context) {
+          //   if (context.tick && context.tick.major) {
+          //     return {
+          //       weight: 'bold',
+          //     };
+          //   }
+          // }
         }
       },
       y: {
@@ -72,13 +74,12 @@ const initalData = {
   //useState of graph
   const [chart, setChart] = useState(initalData)
   useEffect(() => {
-    console.log(chart)
+    
   }, [chart])
 
   const datasetsMaking = (data) => {
     const datasets = data.map((obj, index) => dataTemplate(obj.name, index, obj.start, obj.end, obj.color, obj.color)).reverse();
-    console.log('datasets:', datasets)
-    datasets.unshift({label: 'begin', data:[{x: data[0].mainStart, y: 10}], borderColor: 'green'})
+    datasets.unshift({label: 'begin', data:[{x: data[0].mainStart, y: 7}], borderColor: 'green'})
     datasets.push({label: 'fin', data:[{x: data[0].mainEnd, y: 0}], borderColor: 'green'})
     return datasets;
   }
@@ -123,7 +124,7 @@ const updateMaxMin = (chartData) => {
   return (
     <div className="Arcus">
       <button onClick={dataFetch}>Get My Arcus</button>
-      <Line data={chart} />
+      <Line data={chart} className="graph" />
     </div>
   )
 };

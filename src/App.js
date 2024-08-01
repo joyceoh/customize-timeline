@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Switch, Route } from 'react-router-dom';
+// import { Switch, Route } from 'react-router';
 
 // import the timeline and dynamic info/comment section
 import NavBar from './navigation/navBar.jsx';
@@ -18,9 +18,9 @@ const App = () => {
               <section className='main'>
                 <Arcus/>
                 {/* where the dynamic/switch comment section will be */}
-                <Comments></Comments>
+                <Comments/>
                 {/* another switch to timeline edit */}
-                <ArcusEdit></ArcusEdit>
+                <ArcusEdit/>
             </section>
             
     </div>

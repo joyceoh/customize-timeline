@@ -17,7 +17,7 @@ arcusController.getChartData = (req, res, next) => {
     db.query(queryString)
     .then(data => {
         res.locals.arcusData = data.rows;
-        console.log(data.rows)
+        // console.log(data.rows)
         return next();
     })
 }
@@ -29,10 +29,10 @@ arcusController.sortDate = (req, res, next) => {
     // arcusData = arcusData.sort((a, b) => a.start - b.start);
     // console.log('after sort: ', arcusData)
     arcusData.map(data => {
-            data.start = moment(data.start).format('MMM Do YY'),
-            data.end = moment(data.end).format('MMM Do YY'),
-            data.mainStart = moment(data.mainStart).format('MMM Do YY'),
-            data.mainEnd = moment(data.mainEnd).format('MMM Do YY')
+            data.start = new moment(data.start).format('MMM Do YY'),
+            data.end = new moment(data.end).format('MMM Do YY'),
+            data.mainStart = new moment(data.mainStart).format('MMM Do YY'),
+            data.mainEnd = new moment(data.mainEnd).format('MMM Do YY')
       })
       console.log('dataformatted: ',res.locals.arcusData)
       next();
