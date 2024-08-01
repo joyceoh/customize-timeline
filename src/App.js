@@ -10,18 +10,21 @@ import ArcusEdit from './components/arcusEdit.jsx'
 //import style sheet
 
 const App = () => {
-    return (
-        <div className='router'>
-            {/* nav bar */}
+  return (
+    <div className='router'>
+          {/* nav bar */}
             <NavBar></NavBar>
             {/* where the timline will be */}
-            <Arcus/>
-            {/* where the dynamic/switch comment section will be */}
-            <Comments></Comments>
-            {/* another switch to timeline edit */}
-            <ArcusEdit></ArcusEdit>
-        </div>
-    );
+              <section className='main'>
+                <Arcus/>
+                {/* where the dynamic/switch comment section will be */}
+                <Comments></Comments>
+                {/* another switch to timeline edit */}
+                <ArcusEdit></ArcusEdit>
+            </section>
+            
+    </div>
+  );
 }
 
 export default App;

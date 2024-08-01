@@ -3,7 +3,9 @@ import React from "react";
 //trigger with sidebar click
 const arcusEdit = function(){
   return (
-    <div>Arcus edit</div>
+    <section className="afterArcus">
+      <div>Arcus edit</div>
+    </section>
   )
 }
 

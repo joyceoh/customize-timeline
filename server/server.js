@@ -1,16 +1,18 @@
 //import/require all the needed modules
 const path = require('path');
 const express = require('express');
+const cors = require('cors'); 
 
 //initalize a constant to an instance of express
 const app = express();
 const Router = require('./routes/route');
-const PORT = 6000;
+const PORT = 4000;
 
 //parse through all incoming data
 app.use(express.json())
-//look up what this does I forgot
+//checks url
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 // app.use(express.static(path.resolve(__dirname, '../src/index.html')));
 

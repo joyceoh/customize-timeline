@@ -10,13 +10,16 @@ const Arcus = require('../controllers/arcusController.js');
 // console.log('dirname: ', __dirname)
 
 router.get('/',
-    (req, res) => res.status(200).sendFile(path.resolve(__dirname, '../../src/index.html').json())
+    (req, res) => res.status(200).sendFile(path.resolve(__dirname, '../../src/index.html'))
 );
 
-router.post('/',
+router.post('/', 
     Arcus.getChartData,
-    (req, res) => res.status(200).json(res.locals.data)
-)
+    Arcus.sortDate, 
+    (req, res) => {
+    console.log('Sending chart data:', res.locals.arcusData);
+    res.status(200).json(res.locals.arcusData);
+  });
 
 
 router.post('/editArcus',
@@ -33,7 +36,7 @@ router.post('/comments',
 
 
 //404 for any other routes
-router.use((req, res) => res.status(404).send('OOPSIE. There is no page here. Please go back.'));
+router.use((req, res) => res.status(404).send('OOPSIE. No page found. Please go back.'));
 
 //global error handler
 router.use((err, req, res, next) => {
