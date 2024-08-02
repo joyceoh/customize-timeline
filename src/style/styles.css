@@ -1,6 +1,48 @@
-.Arcus {
-    font-family: sans-serif;
-    text-align: center;
-    height: '40%vh';
-  }
-  
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+  background-color: #e6e6fa; /* Warm White */
+  color: #333333; /* Charcoal Gray */
+  font-family: Arial, sans-serif;
+}
+
+section {
+   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  height: 80vh;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+}
+
+form > * {
+  margin: 0.3em;
+  padding: 0.2em;
+}
+
+button {
+  background-color: #d6a2c4; /* Dusty Rose */
+  color: #ffffff; /* White */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 0.5em;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #b56a9b; /* Darker Dusty Rose */
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.043),0 10px 10px 0 rgba(0,0,0,0.05); /* button shadow */
+}

@@ -32,7 +32,8 @@ router.get('/comments',
 );
 
 router.post('/comments',
-    (req, res) => res.status(200).json()
+    Comments.addComment,
+    (req, res) => res.status(200).redirect('/')
 );
 
 

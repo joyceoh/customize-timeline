@@ -34,8 +34,8 @@ arcusController.sortDate = (req, res, next) => {
             data.mainStart = new moment(data.mainStart).format('MMM Do YY'),
             data.mainEnd = new moment(data.mainEnd).format('MMM Do YY')
       })
-      console.log('dataformatted: ',res.locals.arcusData)
-      next();
+    //   console.log('dataformatted: ',res.locals.arcusData)
+      return next();
 };
 
 //creating a new Arcus

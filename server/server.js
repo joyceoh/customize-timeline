@@ -16,8 +16,11 @@ app.use(cors());
 
 // app.use(express.static(path.resolve(__dirname, '../src/index.html')));
 
+app.get('/logout', (req, res) => res.status(200).sendFile(path.resolve(__dirname, '../src/logout.html')))
 
 app.use('/', Router);
+
+
 
 
   //listening in to port 5000

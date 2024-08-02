@@ -23,14 +23,15 @@ a {
     color: #565656;
   }
   a:hover {
-     color: #cecefa;
+     color: #8383f8;
   }
 
 header {
     position: fixed;
     width: 100%;
     height: 3em;
-    background-color: #e6e6fa; /* Lavender */
+    // background-color: #e6e6fa;
+    background-image: linear-gradient(#e6e6fa, #b5b5fc,); /* Lavender */
     color: rgb(51, 51, 51);
 
     .navContainer {
@@ -73,11 +74,8 @@ header * {
     flex-direction: column;
     align-items: center;
     padding: 1em;
-    margin-top: 3em;
-}
-
-.graph{
-    display:none;
+    margin: 3em 15em;
+    // width: 80%;
 }
 
 /* Buttons */
@@ -109,7 +107,9 @@ button:hover {
     flex-direction: column;
     justify-content: space-between;
     width:80%;
-    margin: 1em;
+    padding: 1.3em;
+    border: rgba(181, 181, 252, 0.2) solid;
+    background-color: #e6e6fa;
 }
 
 .userInfo {
@@ -126,4 +126,61 @@ button:hover {
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    button {
+        align-self: flex-end
+    }
 }
+
+.textbox {
+    display: flex;
+    flex-direction: column;
+
+    input {
+        margin: 1em 0;
+        padding: 0.5em;
+    }
+
+    :last-child {
+        padding: 0.5em;
+    }
+}
+
+.arcusEditor {
+    display: flex;
+    flex-direction: column;
+    margin: 0.2em;
+    input {
+      padding: 0.2em;
+    }
+
+    form > *{
+        margin: 0.2em;
+    }
+}
+
+
+
+
+
+
+//logout
+.logout {
+    display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center; 
+   height: 80vh;
+
+   form > * {
+    margin: 0.3em;
+    padding: 0.2em;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+  }
+ }
+ 

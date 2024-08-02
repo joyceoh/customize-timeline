@@ -1,54 +1,55 @@
 import React, { useState, useEffect } from "react";
-import Chart from 'chart.js/auto';
+import Chart, { scales } from 'chart.js/auto';
 import { Line } from "react-chartjs-2";
 
+const mockdata = [
+  {
+    label: "First dataset",
+    data: [
+      { x: '2024-05-08', y: 3 },
+      { x: '2024-02-09', y: 10 }
+    ],
+    fill: true,
+    backgroundColor: "rgba(75,192,192,0.2)",
+    borderColor: "rgba(75,192,192,1)"
+  },
+  {
+    label: "Second dataset",
+    data: [
+      { x: '2024-02-01', y: 55 },
+      { x: '2024-06-19', y: 55 }
+    ],
+    fill: true,
+    borderColor: "blue"
+  }
+]
+
 const initalData = {
-  datasets: [
-    {
-      label: "First dataset",
-      data: [{x: '2024-05-08 06:06:24+00', y: 3}, {x: '2024-02-09 07:04:37+00', y: 10}],
-      fill: true,
-      backgroundColor: "rgba(75,192,192,0.2)",
-      borderColor: "rgba(75,192,192,1)"
-    },
-    {
-      label: "Second dataset",
-      data: [{x:'2024-02-01 07:03:52+00', y:55}, {x:'2024-06-19 06:06:31+00', y:55}],
-      fill: true,
-      // backgroundColor: "blue",
-      borderColor: "blue"
-    }
-  ],
-  maintainAspectRatio: false,
+  datasets: [mockdata],
   options: {
     scales: {
     x: {
       type: 'time',
-      time: { unit: 'day'},
+      time: {
+        unit: 'day',
+        tooltipFormat: 'll', // Tooltip format
+        displayFormats: {
+          day: 'MMM D', // Display format for the day
+        }
+      },
       grid: { display: false},
       display: true,
       title: {
         display: true,
         text: 'Date'
       },
-      ticks: {
-        autoSkip: false,
-        maxRotation: 0,
-        major: {
-          enabled: true
-        },
-        // color: function(context) {
-          //   return context.tick && context.tick.major ? '#FF0000' : 'rgba(0,0,0,0.1)';
-          // },
-          // font: function(context) {
-          //   if (context.tick && context.tick.major) {
-          //     return {
-          //       weight: 'bold',
-          //     };
-          //   }
-          // }
-        }
-      },
+      // ticks: {
+      //   autoSkip: false,
+      //   maxRotation: 0,
+      //   major: {
+      //     enabled: true
+      //   }}
+      // },
       y: {
         display: true,
         title: {
@@ -56,10 +57,10 @@ const initalData = {
           text: 'Steps'
         }
       }
-    }
+    },
+  maintainAspectRatio: false,
   }
-  
-};
+}};
 
   //create a datatemplate for each res obj and push into datasets state
   const dataTemplate = (label, step, start, end, borderColor, backgroundColor) => ({
@@ -69,18 +70,16 @@ const initalData = {
     // backgroundColor,
     fill: true,
   });
+
   
   export default function Arcus(){
   //useState of graph
   const [chart, setChart] = useState(initalData)
-  useEffect(() => {
-    
-  }, [chart])
 
   const datasetsMaking = (data) => {
     const datasets = data.map((obj, index) => dataTemplate(obj.name, index, obj.start, obj.end, obj.color, obj.color)).reverse();
     datasets.unshift({label: 'begin', data:[{x: data[0].mainStart, y: 7}], borderColor: 'green'})
-    datasets.push({label: 'fin', data:[{x: data[0].mainEnd, y: 0}], borderColor: 'green'})
+    datasets.push({label: 'fin', data:[{x: data[0].mainEnd, y: 0}], borderColor: 'purple'})
     return datasets;
   }
 
@@ -89,7 +88,6 @@ const updateMaxMin = (chartData) => {
   console.log('start main: ', chartData[0].mainStart)
     return {
       ...chart,
-      // labels: [chartData[0].mainStart, chartData[0].mainEnd],
       datasets: datasetsMaking(chartData)
     };
 }
@@ -123,8 +121,9 @@ const updateMaxMin = (chartData) => {
   
   return (
     <div className="Arcus">
+      <h4></h4>
       <button onClick={dataFetch}>Get My Arcus</button>
-      <Line data={chart} className="graph" />
+      <Line data={chart} />
     </div>
   )
 };
