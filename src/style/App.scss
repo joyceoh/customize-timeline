@@ -1,6 +1,21 @@
-// @import 'normalize.css';
-// @import 'styles.css';
+// Modern Health App Styling
+// Colors based on healthcare aesthetics with a soothing palette
 
+// Base Colors
+$primary-color: #663399; // Rebecca Purple - main brand color
+$secondary-color: #9370DB; // Medium Purple - lighter variant
+$accent-color: #44bd94; // Teal/green - healing, growth
+$light-color: #f8f9fa; // Off-white background
+$dark-color: #2c3e50; // Dark slate for text
+$error-color: #e74c3c; // Red for alerts/errors
+$light-gray: #f0f2f5; // Light gray for backgrounds
+$border-color: #e1e4e8; // Border color
+
+// Typography
+$font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+$font-family-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+// Base Styles
 *,
 *::before,
 *::after {
@@ -11,176 +26,598 @@
 }
 
 body {
-    background-color: #f5f5f5; /* Warm White */
-    color: #333333; /* Charcoal Gray */
-    font-family: Arial, sans-serif;
+    background-color: $light-color;
+    color: $dark-color;
+    font-family: $font-family-sans;
+    line-height: 1.6;
+    font-size: 16px;
 }
-#logo {
-    color: #333333;
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-family-heading;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    color: $dark-color;
 }
 
 a {
-    color: #565656;
-  }
-  a:hover {
-     color: #8383f8;
-  }
+    color: $primary-color;
+    transition: color 0.2s ease;
+    
+    &:hover {
+        color: darken($primary-color, 15%);
+        text-decoration: none;
+    }
+}
 
+// Layout
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+// Header/Navigation
 header {
     position: fixed;
     width: 100%;
-    height: 3em;
-    // background-color: #e6e6fa;
-    background-image: linear-gradient(#e6e6fa, #b5b5fc,); /* Lavender */
-    color: rgb(51, 51, 51);
-
+    height: 64px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    
     .navContainer {
         display: flex;
-        justify-content: center; /* Center the content within the header */
-        padding: 10px 20px;
+        height: 100%;
+        align-items: center;
+        padding: 0 20px;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .navList {
         display: flex;
         width: 100%;
         list-style: none;
-        padding: 0;
+        align-items: center;
     }
+    
     .navItem {
         display: flex;
         align-items: center;
+        
+        a {
+            padding: 8px 16px;
+            color: $dark-color;
+            font-weight: 500;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+            
+            &:hover {
+                background-color: rgba($primary-color, 0.1);
+                color: $primary-color;
+            }
+        }
     }
+    
     .left {
         flex: 1;
     }
+    
     .right {
         margin-left: auto;
-        margin-right: 1em;
+    }
+    
+    #logo {
+        color: $primary-color;
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
     }
 }
 
-header * {
-    display: inline;
+// App Container
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
+// Main Content
 .main {
     display: flex;
     flex-direction: column;
-    justify-content: space-between
+    padding-top: 80px;
+    min-height: 100vh;
+    flex: 1; // Take up available space
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        padding: 0 20px;
+    }
+    
+    .edit-toggle {
+        display: flex;
+        justify-content: center;
+        margin: 16px 0 24px 0;
+    }
 }
 
+// Footer
+.app-footer {
+    background-color: white;
+    padding: 24px 0;
+    border-top: 1px solid $border-color;
+    margin-top: 48px;
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        text-align: center;
+    }
+    
+    p {
+        color: #6c757d;
+        font-size: 14px;
+    }
+}
+
+// Arcus Timeline
 .Arcus {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1em;
-    margin: 3em 15em;
-    // width: 80%;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    padding: 24px;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1000px;
+    
+    h4 {
+        color: $primary-color;
+        margin-bottom: 16px;
+    }
+    
+    canvas {
+        width: 100% !important;
+        height: 400px !important;
+        margin: 20px 0;
+    }
 }
 
-/* Buttons */
+// Buttons
 button {
-    background-color: #d6a2c4; /* Dusty Rose */
-    color: #ffffff; /* White */
+    background-color: $primary-color;
+    color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
-    margin: 0.5em;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
     cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    &:hover {
+        background-color: darken($primary-color, 10%);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: translateY(-1px);
+    }
+    
+    &:active {
+        transform: translateY(0);
+    }
+    
+    &.secondary {
+        background-color: $secondary-color;
+        
+        &:hover {
+            background-color: darken($secondary-color, 10%);
+        }
+    }
+    
+    &.success {
+        background-color: $accent-color;
+        
+        &:hover {
+            background-color: darken($accent-color, 10%);
+        }
+    }
 }
 
-button:hover {
-    background-color: #b56a9b; /* Darker Dusty Rose */
-    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.043),0 10px 10px 0 rgba(0,0,0,0.05); /* button shadow */
-}
-
+// Comment Section
 .afterArcus {
-    margin: 1em;
-    margin-top: 4em;
+    margin: 32px auto;
+    width: 90%;
+    max-width: 800px;
+    
+    h3 {
+        color: $primary-color;
+        margin-bottom: 8px;
+    }
+    
+    .description {
+        color: #6c757d;
+        margin-bottom: 24px;
+        font-size: 15px;
+    }
+}
+
+.comments {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 16px;
+}
+
+.comments-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    
+    .loading-message, .no-comments {
+        background-color: white;
+        border-radius: 8px;
+        padding: 24px;
+        text-align: center;
+        color: #6c757d;
+        border: 1px dashed $border-color;
+    }
+    
+    .load-more {
+        align-self: center;
+        margin-top: 16px;
+    }
+}
+
+.error-message {
+    color: $error-color;
+    font-size: 14px;
+    margin-top: 8px;
+    padding: 8px 12px;
+    background-color: rgba($error-color, 0.1);
+    border-radius: 4px;
 }
 
 .commentLayout {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width:80%;
-    padding: 1.3em;
-    border: rgba(181, 181, 252, 0.2) solid;
-    background-color: #e6e6fa;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    border-left: 4px solid $primary-color;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    
+    &:hover {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+        transform: translateY(-2px);
+    }
+    
+    p {
+        margin: 12px 0;
+        color: $dark-color;
+        line-height: 1.6;
+    }
+    
+    .comment-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 8px;
+        
+        .action-button {
+            background: none;
+            border: 1px solid $border-color;
+            color: #6c757d;
+            font-size: 13px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            box-shadow: none;
+            
+            &:hover {
+                background-color: rgba($primary-color, 0.05);
+                color: $primary-color;
+                box-shadow: none;
+                transform: none;
+            }
+        }
+    }
 }
 
 .userInfo {
     display: flex;
     justify-content: space-between;
-}
-
-.date {
-    align-self: flex-end;
-    font-size: 0.75em;
+    align-items: center;
+    
+    .user-with-avatar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: $primary-color;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .user {
+            font-weight: 600;
+            color: $dark-color;
+        }
+        
+        .topic-emoji {
+            font-size: 16px;
+            margin-left: 4px;
+        }
+    }
+    
+    .date {
+        font-size: 12px;
+        color: #6c757d;
+    }
 }
 
 .newComment {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    margin-bottom: 24px;
+    
     button {
-        align-self: flex-end
+        align-self: flex-end;
+        background-color: $accent-color;
+        
+        &:hover {
+            background-color: darken($accent-color, 10%);
+        }
+        
+        &.loading {
+            opacity: 0.8;
+            cursor: not-allowed;
+        }
     }
 }
 
 .textbox {
     display: flex;
     flex-direction: column;
-
-    input {
-        margin: 1em 0;
-        padding: 0.5em;
+    flex: 1;
+    margin-right: 16px;
+    
+    label {
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: $dark-color;
     }
-
-    :last-child {
-        padding: 0.5em;
+    
+    input, textarea, select {
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        padding: 12px;
+        font-size: 14px;
+        margin-bottom: 12px;
+        font-family: inherit;
+        transition: border-color 0.2s ease;
+        
+        &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+        }
+    }
+    
+    select {
+        padding: 10px 12px;
+        margin-top: 8px;
+        background-color: white;
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px top 50%;
+        background-size: 12px auto;
+        padding-right: 30px;
+    }
+    
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+        
+        &::placeholder {
+            color: #adb5bd;
+        }
     }
 }
 
+// Add styles for the timeline legend
+.timeline-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+    padding: 12px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: $dark-color;
+        
+        .color-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            
+            &.diagnosis {
+                background-color: rgba(255, 99, 132, 0.7);
+            }
+            
+            &.treatment {
+                background-color: rgba(54, 162, 235, 0.7);
+            }
+            
+            &.tests {
+                background-color: rgba(75, 192, 192, 0.7);
+            }
+            
+            &.milestone {
+                background-color: rgba(153, 102, 255, 0.7);
+            }
+        }
+    }
+}
+
+// Additional styling for the Arcus component
+.Arcus {
+    .description {
+        color: #6c757d;
+        margin-bottom: 20px;
+        text-align: center;
+        max-width: 600px;
+    }
+    
+    .chart-container {
+        width: 100%;
+        height: 400px;
+        position: relative;
+        margin: 20px 0;
+    }
+    
+    button.loading {
+        opacity: 0.8;
+        cursor: not-allowed;
+    }
+}
+
+// Arcus Editor
 .arcusEditor {
     display: flex;
     flex-direction: column;
-    margin: 0.2em;
-    input {
-      padding: 0.2em;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 24px;
+    margin: 24px auto;
+    width: 90%;
+    max-width: 800px;
+    
+    h3 {
+        color: $primary-color;
+        margin-bottom: 16px;
     }
-
-    form > *{
-        margin: 0.2em;
+    
+    input {
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        padding: 12px;
+        font-size: 14px;
+        margin-bottom: 12px;
+        
+        &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+        }
+    }
+    
+    form > * {
+        margin-bottom: 16px;
     }
 }
 
-
-
-
-
-
-//logout
+// Logout Page
 .logout {
     display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center; 
-   height: 80vh;
-
-   form > * {
-    margin: 0.3em;
-    padding: 0.2em;
-  }
-
-  form {
-    display: flex;
     flex-direction: column;
-    width: 30vw;
-  }
- }
- 
+    justify-content: center;
+    align-items: center; 
+    height: 80vh;
+    
+    h2 {
+        color: $primary-color;
+        margin-bottom: 24px;
+    }
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 400px;
+        background-color: white;
+        padding: 32px;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    
+    input {
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        padding: 12px;
+        font-size: 14px;
+        margin-bottom: 16px;
+        
+        &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+        }
+    }
+    
+    button {
+        background-color: $primary-color;
+        margin-top: 8px;
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .Arcus {
+        width: 95%;
+        padding: 16px;
+        margin: 0 auto;
+    }
+    
+    .afterArcus, .arcusEditor {
+        width: 95%;
+    }
+    
+    .newComment {
+        flex-direction: column;
+        
+        button {
+            align-self: stretch;
+            margin-top: 12px;
+        }
+        
+        .textbox {
+            margin-right: 0;
+        }
+    }
+    
+    header {
+        .navItem.right {
+            display: none;
+        }
+    }
+}

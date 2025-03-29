@@ -2,17 +2,17 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 
-
-//require for the different controllers
+// Require controllers
+// Import controllers for the demo
 const Comments = require('../controllers/commentController.js');
 const Arcus = require('../controllers/arcusController.js');
 
-// console.log('dirname: ', __dirname)
-
+// Serve the main page
 router.get('/',
-    (req, res) => res.status(200).sendFile(path.resolve(__dirname, '../../src/index.html'))
+    (req, res) => res.status(200).sendFile(path.resolve(__dirname, '../../dist/index.html'))
 );
 
+// Get Arcus timeline data
 router.post('/', 
     Arcus.getChartData,
     Arcus.sortDate, 
@@ -21,26 +21,29 @@ router.post('/',
     res.status(200).json(res.locals.arcusData);
   });
 
-
+// Edit Arcus (currently a stub)
 router.post('/editArcus',
-    (req, res) => res.status(200).json()
+    (req, res) => res.status(200).json({ message: 'Edit feature would be implemented here' })
 );
 
+// Get comments
 router.get('/comments',
     Comments.getComments,
     (req, res) => res.status(200).json(res.locals.commentsData)
 );
 
+// Add a comment
 router.post('/comments',
     Comments.addComment,
-    (req, res) => res.status(200).redirect('/')
+    (req, res) => {
+      res.status(200).json({ success: true, message: 'Comment added successfully' });
+    }
 );
 
-
-//404 for any other routes
+// 404 for any other routes
 router.use((req, res) => res.status(404).send('OOPSIE. No page found. Please go back.'));
 
-//global error handler
+// Global error handler
 router.use((err, req, res, next) => {
     const defaultErr = {
       log: 'Express error handler caught unknown middleware error',
